@@ -1,0 +1,6 @@
+[workspace]
+members = ["problems/*"]
+resolver = "2"
+
+[workspace.dependencies]
+# Add common dependencies here if needed
