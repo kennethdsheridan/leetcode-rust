@@ -1,7 +1,7 @@
 # LeetCode Rust Solutions - Project Context for Claude
 
 ## Project Overview
-This is a collection of LeetCode problem solutions implemented in Rust. Each problem is organized as a separate Rust crate within the `problems/` directory.
+This is a collection of LeetCode problem solutions implemented in Rust. Each problem is organized as a separate Rust crate within the `problems/` directory. The project uses `just` command runner for task automation.
 
 ## Project Structure
 ```
@@ -13,33 +13,51 @@ leetcode-rust/
 │   └── ... (other problems)
 ├── Cargo.toml            # Workspace configuration
 ├── template.rs           # Template for new problems
-├── justfile             # Task automation
+├── justfile             # Task automation commands
+├── README.md            # User-facing documentation
 └── flake.nix            # Nix development environment
 ```
 
 ## Development Workflow
 
-### Running Tests
-Each problem has its own tests. To run tests for a specific problem:
-```bash
-cd problems/<problem_name>
-cargo test
-```
+### Just Commands (Preferred)
+The project includes a `justfile` with helpful commands:
 
-To run all tests in the workspace:
-```bash
-cargo test --workspace
-```
+- **List problems**: `just list`
+- **Create new problem**: `just new <problem_name>`
+- **Test specific problem**: `just test <problem_name>`
+- **Test all problems**: `just test-all`
+- **Watch tests**: `just watch <problem_name>` (auto-runs on changes)
+- **Run problem**: `just run <problem_name>` (if it has main function)
+- **Clean artifacts**: `just clean`
+
+### Manual Commands (Fallback)
+If `just` is not available:
+- **Test specific problem**: `cargo test -p <problem_name>`
+- **Test all**: `cargo test --workspace`
+- **Format**: `cargo fmt`
+- **Lint**: `cargo clippy`
+- **Check types**: `cargo check`
 
 ### Adding New Problems
-1. Create a new directory under `problems/`
-2. Use `template.rs` as a starting point
-3. Add the new crate to the workspace in the root `Cargo.toml`
+**Preferred method** (using just):
+```bash
+just new problem_name
+```
 
-### Code Quality Commands
-- **Format code**: `cargo fmt`
-- **Lint code**: `cargo clippy`
-- **Check types**: `cargo check`
+This command:
+1. Creates `problems/problem_name/` directory structure
+2. Sets up `Cargo.toml` with correct configuration
+3. Copies `template.rs` to `src/lib.rs`
+4. Displays the file path for editing
+
+**Note**: You still need to manually add the problem to the workspace in root `Cargo.toml`:
+```toml
+members = [
+    # ... existing members
+    "problems/problem_name",
+]
+```
 
 ## Common Patterns
 - Each problem solution is implemented as a struct called `Solution`

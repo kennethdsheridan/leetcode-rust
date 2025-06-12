@@ -18,6 +18,7 @@ A collection of LeetCode problem solutions implemented in Rust, organized as a C
 ### Prerequisites
 - Rust 1.70+ (install from [rustup.rs](https://rustup.rs/))
 - Git
+- Just command runner (optional but recommended): `cargo install just`
 
 ### Clone the Repository
 ```bash
@@ -25,22 +26,30 @@ git clone https://github.com/kennethdsheridan/leetcode-rust.git
 cd leetcode-rust
 ```
 
-### Running Tests
-Run all tests:
+### Quick Commands with Just
+
+List all available problems:
 ```bash
+just list
+```
+
+Run tests for all problems:
+```bash
+just test-all
+# or using cargo directly:
 cargo test --workspace
 ```
 
-Run tests for a specific problem:
+Test a specific problem:
 ```bash
-cd problems/two_sum
-cargo test
+just test two_sum
+# or using cargo:
+cargo test -p two_sum
 ```
 
-### Running a Specific Solution
+Watch and test a problem (auto-runs tests on file changes):
 ```bash
-cd problems/<problem_name>
-cargo run
+just watch palindrome_number
 ```
 
 ## 🛠️ Development
@@ -55,10 +64,24 @@ cargo run
 │           └── lib.rs
 ├── Cargo.toml         # Workspace configuration
 ├── template.rs        # Template for new problems
-└── justfile          # Task automation
+├── justfile          # Task automation commands
+└── flake.nix         # Nix development environment
 ```
 
 ### Adding New Problems
+
+Using just (recommended):
+```bash
+just new problem_name
+```
+
+This automatically:
+- Creates the problem directory structure
+- Copies the template
+- Sets up Cargo.toml
+- Shows you where to edit the solution
+
+Manual approach:
 1. Create a new directory: `mkdir -p problems/new_problem_name/src`
 2. Copy the template: `cp template.rs problems/new_problem_name/src/lib.rs`
 3. Add to workspace in root `Cargo.toml`:
@@ -85,6 +108,13 @@ cargo fmt
 Run linter:
 ```bash
 cargo clippy
+```
+
+Clean build artifacts:
+```bash
+just clean
+# or using cargo:
+cargo clean
 ```
 
 ## 🧪 Testing Strategy
