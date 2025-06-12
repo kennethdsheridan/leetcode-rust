@@ -2,7 +2,24 @@
 
 A collection of LeetCode problem solutions implemented in Rust, organized as a Cargo workspace with each problem in its own crate.
 
-## 📚 Problems Solved
+## Quick Start (Copy & Paste)
+
+```bash
+# Clone the repository
+git clone https://github.com/kennethdsheridan/leetcode-rust.git
+cd leetcode-rust
+
+# Enter the development environment (includes Rust, just, cargo-watch)
+nix develop
+
+# Start coding!
+just list              # See all problems
+just new my_problem    # Create a new problem
+just test two_sum      # Test a specific problem
+just watch two_sum     # Auto-test on changes
+```
+
+## Problems Solved
 
 - **Two Sum** - Hash map approach for finding two numbers that sum to a target
 - **Palindrome Number** - Check if an integer reads the same backward as forward
@@ -13,46 +30,46 @@ A collection of LeetCode problem solutions implemented in Rust, organized as a C
 - **Merge Strings Alternately** - String manipulation with iterators
 - **Reverse Words in a String** - String parsing and manipulation
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
+
+- **Nix** (recommended): Install from [nixos.org](https://nixos.org/download.html)
+  ```bash
+  # macOS/Linux - Install Nix
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+  ```
+
+### Quick Start with Nix (Recommended)
+
+Once Nix is installed:
+```bash
+nix develop  # Enters shell with all tools
+```
+
+That's it! The Nix shell includes Rust, cargo-watch, just, and all necessary tools.
+
+### Alternative Setup (Without Nix)
+
+Prerequisites:
 - Rust 1.70+ (install from [rustup.rs](https://rustup.rs/))
 - Git
-- Just command runner (optional but recommended): `cargo install just`
+- Just command runner: `cargo install just`
+- Cargo watch: `cargo install cargo-watch`
 
-### Clone the Repository
+### Quick Commands
+
+Once in the development environment:
+
 ```bash
-git clone https://github.com/kennethdsheridan/leetcode-rust.git
-cd leetcode-rust
+just list              # List all problems
+just new two_sum       # Create new problem
+just test two_sum      # Test specific problem
+just test-all          # Test all problems
+just watch two_sum     # Auto-test on file changes
 ```
 
-### Quick Commands with Just
-
-List all available problems:
-```bash
-just list
-```
-
-Run tests for all problems:
-```bash
-just test-all
-# or using cargo directly:
-cargo test --workspace
-```
-
-Test a specific problem:
-```bash
-just test two_sum
-# or using cargo:
-cargo test -p two_sum
-```
-
-Watch and test a problem (auto-runs tests on file changes):
-```bash
-just watch palindrome_number
-```
-
-## 🛠️ Development
+## Development
 
 ### Project Structure
 ```
@@ -117,14 +134,14 @@ just clean
 cargo clean
 ```
 
-## 🧪 Testing Strategy
+## Testing Strategy
 
 Each solution includes:
 - Unit tests with LeetCode examples
 - Edge case tests
 - Performance considerations documented in comments
 
-## 📈 Problem Categories
+## Problem Categories
 
 - **Arrays & Hashing**: Two Sum
 - **Two Pointers**: Palindrome Number
@@ -132,7 +149,7 @@ Each solution includes:
 - **Dynamic Programming**: Climbing Stairs, House Robber, Best Time to Buy and Sell Stock
 - **String Manipulation**: Merge Strings Alternately, Reverse Words in a String
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to add new solutions or improve existing ones:
 1. Fork the repository
@@ -140,6 +157,6 @@ Feel free to add new solutions or improve existing ones:
 3. Add your solution with tests
 4. Submit a pull request
 
-## 📝 License
+## License
 
 This project is open source and available under the MIT License.

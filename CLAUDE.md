@@ -1,7 +1,7 @@
 # LeetCode Rust Solutions - Project Context for Claude
 
 ## Project Overview
-This is a collection of LeetCode problem solutions implemented in Rust. Each problem is organized as a separate Rust crate within the `problems/` directory. The project uses `just` command runner for task automation.
+This is a collection of LeetCode problem solutions implemented in Rust. Each problem is organized as a separate Rust crate within the `problems/` directory. The project uses Nix for reproducible development environments and `just` command runner for task automation.
 
 ## Project Structure
 ```
@@ -14,30 +14,50 @@ leetcode-rust/
 ├── Cargo.toml            # Workspace configuration
 ├── template.rs           # Template for new problems
 ├── justfile             # Task automation commands
+├── flake.nix            # Nix development environment
 ├── README.md            # User-facing documentation
-└── flake.nix            # Nix development environment
+└── CLAUDE.md            # This file - AI context
 ```
 
-## Development Workflow
+## Development Environment
 
-### Just Commands (Preferred)
-The project includes a `justfile` with helpful commands:
+### Quick Start (Copy & Paste)
+```bash
+# Enter development shell with all tools
+nix develop
 
-- **List problems**: `just list`
-- **Create new problem**: `just new <problem_name>`
-- **Test specific problem**: `just test <problem_name>`
-- **Test all problems**: `just test-all`
-- **Watch tests**: `just watch <problem_name>` (auto-runs on changes)
-- **Run problem**: `just run <problem_name>` (if it has main function)
-- **Clean artifacts**: `just clean`
+# Or if nix develop doesn't work, try:
+nix-shell
+```
 
-### Manual Commands (Fallback)
-If `just` is not available:
-- **Test specific problem**: `cargo test -p <problem_name>`
-- **Test all**: `cargo test --workspace`
-- **Format**: `cargo fmt`
-- **Lint**: `cargo clippy`
-- **Check types**: `cargo check`
+The Nix environment provides:
+- Rust toolchain (stable)
+- rust-analyzer
+- cargo-watch
+- cargo-edit
+- just command runner
+
+### Available Commands
+Once in the Nix shell, these commands are available:
+
+```bash
+just list              # List all problems
+just new <name>        # Create new problem
+just test <name>       # Test specific problem
+just test-all          # Test all problems
+just watch <name>      # Auto-test on changes
+just run <name>        # Run problem (if has main)
+just clean             # Clean build artifacts
+```
+
+### Direct Cargo Commands (Fallback)
+```bash
+cargo test -p <problem_name>    # Test specific problem
+cargo test --workspace          # Test all
+cargo fmt                       # Format code
+cargo clippy                    # Lint code
+cargo check                     # Type check
+```
 
 ### Adding New Problems
 **Preferred method** (using just):
