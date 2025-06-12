@@ -23,11 +23,11 @@ leetcode-rust/
 
 ### Quick Start (Copy & Paste)
 ```bash
+# Install Nix with flakes enabled (if not already installed)
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
 # Enter development shell with all tools
 nix develop
-
-# Or if nix develop doesn't work, try:
-nix-shell
 ```
 
 The Nix environment provides:

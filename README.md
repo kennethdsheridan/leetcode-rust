@@ -5,6 +5,9 @@ A collection of LeetCode problem solutions implemented in Rust, organized as a C
 ## Quick Start (Copy & Paste)
 
 ```bash
+# Install Nix with flakes enabled (if you don't have it)
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
 # Clone the repository
 git clone https://github.com/kennethdsheridan/leetcode-rust.git
 cd leetcode-rust
@@ -32,22 +35,7 @@ just watch two_sum     # Auto-test on changes
 
 ## Getting Started
 
-### Prerequisites
-
-- **Nix** (recommended): Install from [nixos.org](https://nixos.org/download.html)
-  ```bash
-  # macOS/Linux - Install Nix
-  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-  ```
-
-### Quick Start with Nix (Recommended)
-
-Once Nix is installed:
-```bash
-nix develop  # Enters shell with all tools
-```
-
-That's it! The Nix shell includes Rust, cargo-watch, just, and all necessary tools.
+The quick start section above has everything you need. The Nix shell includes Rust, cargo-watch, just, and all necessary tools.
 
 ### Alternative Setup (Without Nix)
 
